@@ -1,0 +1,2 @@
+source_ip,risk_score,risk_level,failed_logins,successful_logins,unique_usernames,commands_recorded,usernames,commands,reasons
+127.0.0.1,10,LOW,0,1,1,4,testuser,whoami | uname -a | ls | exit,Command pattern: system reconnaissance

@@ -1,0 +1,24 @@
+# Python virtual environments
+.venv/
+cowrie-env/
+cowrie-lab/cowrie-env/
+cowrie-lab/cowrie-venv/
+
+# Python cache and test cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# Local Cowrie runtime data and logs
+cowrie-lab/var/
+cowrie-lab/etc/cowrie.cfg
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store

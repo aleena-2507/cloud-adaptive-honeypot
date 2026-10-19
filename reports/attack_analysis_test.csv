@@ -1,0 +1,2 @@
+source_ip,risk_score,risk_level,failed_logins,successful_logins,unique_usernames,commands_recorded,usernames,commands,reasons
+192.0.2.30,0,LOW,0,0,0,0,,,No configured high-risk rule matched

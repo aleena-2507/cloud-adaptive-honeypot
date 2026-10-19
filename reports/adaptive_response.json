@@ -1,0 +1,11 @@
+[
+  {
+    "timestamp_utc": "2026-10-19T07:48:04.307689+00:00",
+    "source_ip": "127.0.0.1",
+    "risk_score": 10,
+    "risk_level": "LOW",
+    "monitoring_level": "NORMAL",
+    "action": "CONTINUE_MONITORING",
+    "mode": "SIMULATED_POLICY_ONLY"
+  }
+]

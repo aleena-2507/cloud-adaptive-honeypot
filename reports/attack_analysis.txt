@@ -1,0 +1,13 @@
+HONEYPOT ATTACK-BEHAVIOUR ANALYSIS
+==================================
+Events examined: 13
+Source IPs examined: 1
+Scores are rule-based indicators, not proof of an attack.
+
+Source: 127.0.0.1
+Risk: 10/100 (LOW)
+Failed logins: 0
+Usernames: testuser
+Commands: whoami | uname -a | ls | exit
+Reasons: Command pattern: system reconnaissance
+

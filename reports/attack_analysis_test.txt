@@ -1,0 +1,13 @@
+HONEYPOT ATTACK-BEHAVIOUR ANALYSIS
+==================================
+Events examined: 1
+Source IPs examined: 1
+Scores are rule-based indicators, not proof of an attack.
+
+Source: 192.0.2.30
+Risk: 0/100 (LOW)
+Failed logins: 0
+Usernames: None recorded
+Commands: None recorded
+Reasons: No configured high-risk rule matched
+
