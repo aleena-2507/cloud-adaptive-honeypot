@@ -6,7 +6,7 @@ from collections import defaultdict
 
 import pandas as pd
 
-BASE = Path.home() / "adaptive-honeypot"
+BASE = Path(__file__).resolve().parents[1]
 LOG_FILE = Path(sys.argv[1]).expanduser() if len(sys.argv) > 1 else BASE / "cowrie-lab/var/log/cowrie/cowrie.json"
 REPORT_DIR = BASE / "reports"
 
@@ -34,10 +34,15 @@ def main():
         raise SystemExit("No events found in the Cowrie log.")
 
     by_ip = defaultdict(list)
-    for event in events:
-        ip = event.get("src_ip", "unknown")
-        by_ip[ip].append(event)
+    for event_number, event in enumerate(events, 1):
+        ip = event.get("src_ip")
 
+        if not isinstance(ip, str) or not ip.strip():
+            ip = f"unknown_event_{event_number}"
+        else:
+            ip = ip.strip()
+
+        by_ip[ip].append(event)
     results = []
     for ip, rows in by_ip.items():
         failed = sum(e.get("eventid") == "cowrie.login.failed" for e in rows)

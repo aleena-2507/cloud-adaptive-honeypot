@@ -1,11 +1,12 @@
 import json
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 import pandas as pd
 
-BASE = Path.home() / "adaptive-honeypot"
-INPUT_FILE = BASE / "reports/attack_analysis.csv"
+BASE = Path(__file__).resolve().parents[1]
+INPUT_FILE = BASE / "reports" / "attack_analysis.csv"
 REPORT_DIR = BASE / "reports"
 
 def choose_response(score):
@@ -16,10 +17,16 @@ def choose_response(score):
     return "NORMAL", "CONTINUE_MONITORING"
 
 def main():
-    if not INPUT_FILE.exists():
-        raise SystemExit(f"Missing input report: {INPUT_FILE}")
+    input_file = (
+        Path(sys.argv[1]).expanduser()
+        if len(sys.argv) > 1
+        else INPUT_FILE
+    )
 
-    df = pd.read_csv(INPUT_FILE)
+    if not input_file.exists():
+        raise SystemExit(f"Missing input report: {input_file}")
+
+    df = pd.read_csv(input_file)
     decisions = []
 
     for _, row in df.iterrows():
@@ -37,7 +44,13 @@ def main():
         })
 
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
-    output = REPORT_DIR / "adaptive_response.json"
+    output_name = (
+        "adaptive_response_test.json"
+        if len(sys.argv) > 1
+        else "adaptive_response.json"
+    )
+
+    output = REPORT_DIR / output_name
     output.write_text(json.dumps(decisions, indent=2), encoding="utf-8")
 
     print("=== Adaptive Monitoring Policy ===")

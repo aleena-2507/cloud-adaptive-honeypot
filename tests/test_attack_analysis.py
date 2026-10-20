@@ -97,3 +97,32 @@ def test_invalid_json_line_is_skipped(tmp_path):
     assert result.returncode == 0, result.stderr
     assert "Warning: skipped invalid JSON on line 2" in result.stdout
     assert "Events examined: 1" in result.stdout
+def test_missing_source_ips_are_kept_separate(tmp_path):
+    log_file = tmp_path / "missing_ips.json"
+
+    events = [
+        {
+            "eventid": "cowrie.login.failed",
+            "username": "root"
+        },
+        {
+            "eventid": "cowrie.login.failed",
+            "username": "admin"
+        }
+    ]
+
+    with log_file.open("w", encoding="utf-8") as file:
+        for event in events:
+            file.write(json.dumps(event) + "\n")
+
+    result = subprocess.run(
+        [sys.executable, str(ANALYSER), str(log_file)],
+        capture_output=True,
+        text=True,
+        timeout=30
+    )
+
+    assert result.returncode == 0, result.stderr
+    assert "Source IPs examined: 2" in result.stdout
+    assert "unknown_event_1" in result.stdout
+    assert "unknown_event_2" in result.stdout
